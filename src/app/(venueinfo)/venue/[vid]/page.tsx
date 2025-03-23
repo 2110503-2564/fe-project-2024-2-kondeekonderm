@@ -1,5 +1,3 @@
-import Image from "next/image"
-import getVenue from "@/libs/getVenue"
 import getAppointments from "@/libs/getAppointments"
 
 export default async function VenueDetailPage({params}: {params: {vid: string}}) {
