@@ -12,8 +12,16 @@ import Company from "@/db/models/Company"
 import { dbConnect } from "@/db/dbConnect"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/authOptions";
+import getUserProfile from "@/libs/getUserProfile";
 
 export default function Booking () {
+
+    
+
+
+
     const dispatch = useDispatch<AppDispatch>()
 
     const [nameLastname, setNameLastname] = useState("");
@@ -62,7 +70,7 @@ export default function Booking () {
 
     return (
         <main className="w-full flex flex-col items-center space-y-6 py-10">
-            <div className="text-2xl font-bold text-stone-950">Venue Booking</div>
+            <div className="text-2xl font-bold text-stone-950">Companies Booking</div>
             
             <div className="space-y-6 p-6 flex flex-col max-w-md mx-auto shadow-lg rounded-lg">
                 <TextField variant="standard" name="Name-Lastname" label="Name-Lastname" 

@@ -11,6 +11,13 @@ export interface VenueItem {
     __v: number,
     id: string
   }
+  export interface UserItem {
+    _id: string,
+    name: string,
+    email:string
+    tel: string,
+    createdAt: string,
+  }
   
   export interface VenueJson {
     success: boolean,

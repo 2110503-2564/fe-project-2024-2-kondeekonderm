@@ -31,15 +31,44 @@ export default function Booking () {
     const [password2, setPassword2] = useState("");
     const [showPassword2, setShowPassword2] = useState(false);
 
-    const checkPassword = (password1 : string , password2 : string , email : string , name : string , contactNumber : string) => {
-        if(password1 == password2) {
-            userRegister(email , password2 , name ,contactNumber)
-            router.push('/')
-            return true ;
+    const validateEmail = (email: string) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      };
+
+      const validatePhoneNumber = (phone: string) => {
+        const regex = /^0\d{9}$/;
+        return regex.test(phone);
+      };
+      
+
+      const checkPassword = (
+        password1: string,
+        password2: string,
+        email: string,
+        name: string,
+        contactNumber: string
+      ) => {
+
+        if (!validatePhoneNumber(contactNumber)) {
+            alert("Please enter a valid phone number (10 digits and starts with 0)");
+            return false;
+          }
+          if (!validateEmail(email)) {
+            alert("Please enter a valid email address");
+            return false;
+          }
+      
+        if (password1 !== password2) {
+          alert("Please check your password again");
+          return false;
         }
-        alert("Please check your password again") ;
-        return false ;
-    }
+      
+        userRegister(email, password2, name, contactNumber);
+        router.push("/");
+        return true;
+      };
+      
 
     return (
         <main className="w-full flex flex-col items-center space-y-6 py-10">
