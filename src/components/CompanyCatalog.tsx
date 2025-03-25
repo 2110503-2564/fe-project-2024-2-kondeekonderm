@@ -1,7 +1,8 @@
 import Link from "next/link"
 import Card from "./Card"
+import { CompanyJson, CompanyItem } from "../../interface";
 
-export default async function CompanyCatalog({companysJson}: {companysJson:Object}) {
+export default async function CompanyCatalog({companysJson}: {companysJson:CompanyJson}) {
     const companyJsonReady = await companysJson
 
     if (!companyJsonReady.data || companyJsonReady.data.length === 0) {
@@ -14,7 +15,7 @@ export default async function CompanyCatalog({companysJson}: {companysJson:Objec
             <div style={{margin:"20px", display:"flex", flexDirection:"row", 
                 alignContent:"space-around", justifyContent:"space-around", flexWrap:"wrap"}}>
                     {
-                        companyJsonReady.data.map((companyItem:Object)=>(
+                        companyJsonReady.data.map((companyItem:CompanyItem)=>(
                             <Link href={`/venue/${companyItem._id}`} className="w-[100%] sm:w-[50%] md:w-[30%] lg:w-[25%]
                             p-2 sm:p-4 md:p-4 lg:p-8">
                             <Card companyName={companyItem.name} imgSrc={companyItem.picture}
