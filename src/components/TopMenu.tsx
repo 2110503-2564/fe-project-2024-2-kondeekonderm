@@ -13,14 +13,14 @@ export default async function TopMenu () {
             <div className='flex flex-row absolute left-4 h-full items-center'>
             {
                 session? <Link href="/api/auth/signout?callbackUrl=/"><div className='flex items-center h-full px-4 text-cyan-600 text-lg hover:text-cyan-800'>
-                    Sign-Out of {session.user ?. name}</div></Link>
+                    Sign-Out</div></Link>
                 :<Link href="/api/auth/signin?callbackUrl=/"><div className='flex items-center h-full px-4 text-cyan-600 text-lg hover:text-cyan-800'>
                     Sign-In</div></Link>
             }
             <TopMenuItem label="My Booking" link="/mybooking"/>
             </div>
             
-            <TopMenuItem label="Booking" link="/booking" />
+            <TopMenuItem label="Booking" link="/venue" />
             <Image src="/img/logo.png" alt='logo' className="w-auto h-full" width={0} height={0} sizes="100vh"/>
             
         </div>

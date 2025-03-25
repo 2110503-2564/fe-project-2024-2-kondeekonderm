@@ -1,27 +1,27 @@
-export interface VenueItem {
-    _id: string,
-    name: string,
-    address: string,
-    district: string,
-    province: string,
-    postalcode: string,
-    tel: string,
-    picture: string,
-    dailyrate: number,
-    __v: number,
-    id: string
-  }
+export interface CompanyItem {
+  _id: string,
+  name: string,
+  address: string,
+  district: string,
+  province: string,
+  postalcode: string,
+  website: string,
+  description: string,
+  tel: string,
+  __v: number,
+  id: string
+}
   
-  export interface VenueJson {
+  export interface CompanyJson {
     success: boolean,
     count: number,
     pagination: Object,
-    data: VenueItem[]
+    data: CompanyItem[]
   }
 
-  export interface BookingItem {
-    nameLastname: string;
-    tel: string;
-    venue: string;
-    bookDate: string;
+  export interface AppointmentItem {
+    apptDate: string;
+    user: string;
+    company: string;
+    createdAt: string;
   }
