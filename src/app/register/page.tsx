@@ -54,7 +54,7 @@ export default function Booking() {
   };
 
   return (
-    <main className="w-full flex flex-col items-center py-10 bg-gradient-to-r from-blue-200 to-purple-300">
+    <main className="w-full flex flex-col items-center py-10 min-h-screen bg-gray-100 py-10 px-4 sm:px-6 md:px-8">
       <div className="text-3xl font-bold text-stone-950 mb-8">Create Your Account</div>
 
       <div className="space-y-6 p-8 flex flex-col max-w-lg mx-auto bg-white shadow-xl rounded-lg">
