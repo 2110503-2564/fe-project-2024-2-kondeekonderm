@@ -2,12 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import DeleteButton from "./DeleteButton";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-
-dayjs.extend(utc);
+import { useRouter } from "next/navigation";
 
 export default function BookingList() {
     const [appointments, setAppointments] = useState<any[]>([]);
@@ -32,6 +28,7 @@ export default function BookingList() {
             }
 
             const data = await response.json();
+            console.log("API Response:", data);
             if (data && Array.isArray(data.data)) {
                 setAppointments(data.data);
             } else {
@@ -57,33 +54,29 @@ export default function BookingList() {
     };
 
     return (
-        <div className="container mx-auto py-6">
-            <h1 className="text-3xl font-bold text-center text-gray-900 mb-6">📅 My Bookings</h1>
+        <div className="text-black py-4">
+            {appointments && Array.isArray(appointments) ? (
+                appointments.map((appointment) => (
+                    <div key={appointment._id} className=" mx-auto bg-white shadow-md rounded-lg my-3 p-4">
+                        <div className="flex flex-col">
+                            <div className="text-xl font-semibold text-gray-800">{appointment.user.name}</div>
+                            <div className="text-lg text-gray-600 mt-1">Company: {appointment.company.name}</div>
+                            <div className="text-sm text-gray-500 mt-1">Appointment date: {appointment.apptDate}</div>
 
-            {appointments.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 px-4">
-                    {appointments.map((appointment) => (
-                        <div key={appointment._id} className="bg-white shadow-lg rounded-xl p-5 border border-gray-200">
-                            <h2 className="text-lg font-semibold text-gray-800">{appointment.company.name}</h2>
-                            <p className="text-gray-600 text-sm mt-1">📍 {appointment.company.address}</p>
-                            <p className="text-gray-700 mt-2 font-medium">
-                                📆 {dayjs(appointment.apptDate).utc().format("MMMM D, YYYY [at] h:mm A")}
-                            </p>
-                            
-                            <div className="flex items-center justify-between mt-4">
-                                <button
-                                    className="rounded-lg bg-cyan-600 hover:bg-cyan-500 px-4 py-2 text-white font-medium transition-all"
+                            <div className="mt-3 flex justify-between items-center">
+                            <button
+                                    className="rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-1 text-white shadow-md transition duration-200 transform hover:scale-105"
                                     onClick={() => handleUpdateAppointment(appointment)}
                                 >
-                                    ✏️ Update
+                                    Update
                                 </button>
                                 <DeleteButton id={appointment._id} onDeleteSuccess={handleAppointmentDeleted} />
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))
             ) : (
-                <div className="text-center text-gray-700 text-lg py-6">😕 No appointments found.</div>
+                <div className="text-center text-gray-500 py-5">No appointments found.</div>
             )}
         </div>
     );
