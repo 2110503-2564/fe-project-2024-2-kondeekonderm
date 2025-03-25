@@ -98,7 +98,7 @@ export default async function TopMenu () {
             </div>
             
             
-            <TopMenuItem label="Booking" link="/booking" />
+            <TopMenuItem label="Booking" link="/venue" />
             <Image src="/img/logo.png" alt="logo" className="w-auto h-full" width={0} height={0} sizes="100vh" />
         </div>
     )
