@@ -27,9 +27,6 @@ export default async function TopMenu() {
                         </div>
                     </Link>
                 </div>
-
-                <TopMenuItem label="Booking" link="/booking" />
-                <Image src="/img/logo.png" alt="logo" className="w-auto h-full" width={120} height={40} />
             </div>
         );
     }
