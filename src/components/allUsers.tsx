@@ -25,7 +25,7 @@ export default async function AllUsers() {
             
             {users.data && users.data.length > 0 ? (
                 users.data.map((userItem : UserItem) => (
-                    <div key={userItem._id} className="bg-slate-200 rounded px-5 mx-5 py-2 my-2">
+                    <div key={userItem._id} className="bg-slate-200 rounded px-5 mx-5 py-2 my-2 text-black">
                         <div className="text-xl">{userItem.name}</div>
                         <div className="text-sm">Tel: {userItem.tel}</div>
                         <div className="text-sm">Email: {userItem.email}</div>

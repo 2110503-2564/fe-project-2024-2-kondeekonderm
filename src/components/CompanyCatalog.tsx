@@ -1,28 +1,29 @@
-import Link from "next/link";
-import Card from "./Card";
-import { CompanyJson } from "../../interface";
+import Link from "next/link"
+import Card from "./Card"
 
-export default async function CompanyCatalog({ companysJson }: { companysJson: Object }) {
-    const companyJsonReady = await companysJson;
+export default async function CompanyCatalog({companysJson}: {companysJson:Object}) {
+    const companyJsonReady = await companysJson
 
     if (!companyJsonReady.data || companyJsonReady.data.length === 0) {
-        return <p className="text-center text-lg text-gray-600 mt-6">🚫 No venues found. Please check back later.</p>;
+        return <p className="text-red-500">No venues found.</p>; // 🔹 Show fallback message
     }
-
+    
     return (
-        <div className="text-black px-4 overflow-x-auto">
-            {/* Flex Container - Ensures exactly 4 items per row */}
-            <div className="flex flex-wrap justify-center gap-6 mt-6 w-full">
-                {companyJsonReady.data.map((companyItem: any) => (
-                    <Link 
-                        key={companyItem._id} 
-                        href={`/venue/${companyItem._id}`}
-                        className="w-[22%] min-w-[250px] transition-transform transform hover:scale-105 hover:shadow-lg"
-                    >
-                        <Card companyName={companyItem.name} imgSrc={companyItem.picture} />
-                    </Link>
-                ))}
+        <div className="text-black">
+            
+            <div style={{margin:"20px", display:"flex", flexDirection:"row", 
+                alignContent:"space-around", justifyContent:"space-around", flexWrap:"wrap"}}>
+                    {
+                        companyJsonReady.data.map((companyItem:Object)=>(
+                            <Link href={`/venue/${companyItem._id}`} className="w-[100%] sm:w-[50%] md:w-[30%] lg:w-[25%]
+                            p-2 sm:p-4 md:p-4 lg:p-8">
+                            <Card companyName={companyItem.name} imgSrc={companyItem.picture}
+                            />
+                            </Link>
+                            )
+                        )
+                    }
             </div>
         </div>
-    );
+    )
 }
